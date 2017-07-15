@@ -1,5 +1,5 @@
 import { Queue } from '../utils/queue'
-import { sendAjaxRequest } from '../utils/queue'
+import { sendAjaxRequest } from '../utils/ajax'
 
 const queue = new Queue()
 const eventListeners = ['mousemove', 'keyup', 'click']
