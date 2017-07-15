@@ -1,4 +1,5 @@
 import { Queue } from '../utils/queue'
+import { sendAjaxRequest } from '../utils/queue'
 
 const queue = new Queue()
 const eventListeners = ['mousemove', 'keyup', 'click']
@@ -9,3 +10,11 @@ eventListeners.map(eventListener => {
     console.log('event', event)
   })
 })
+
+const postQueue = queue => {
+  sendAjaxRequest('POST', 'https://www.google.com', () => {
+    console.log('posted')
+  })
+}
+
+setInterval(postQueue, 5000)

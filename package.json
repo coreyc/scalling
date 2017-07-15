@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/coreyc/scalling/issues"
   },
-  "homepage": "https://github.com/coreyc/scalling#readme"
+  "homepage": "https://github.com/coreyc/scalling#readme",
+  "dependencies": {
+    "express": "4.15.3"
+  }
 }
