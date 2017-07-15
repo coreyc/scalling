@@ -1,6 +1,6 @@
 'use strict';
 
-export const Queue = () => {
+export default function Queue() {
 
   let queue  = [];
   let offset = 0;

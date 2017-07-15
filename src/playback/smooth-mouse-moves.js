@@ -1,0 +1,1 @@
+// use some math here to smooth out the mouse coordinates
