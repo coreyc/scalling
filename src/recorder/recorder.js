@@ -1,5 +1,5 @@
 import { Queue } from '../utils/queue'
-import { sendAjaxRequest } from '../utils/ajax'
+import { postQueue } from './send-queue'
 
 const queue = new Queue()
 const eventListeners = ['mousemove', 'keyup', 'click']
@@ -11,10 +11,9 @@ eventListeners.map(eventListener => {
   })
 })
 
-const postQueue = queue => {
-  sendAjaxRequest('POST', 'https://www.google.com', () => {
-    console.log('posted')
-  })
-}
+setInterval(postQueue(queue), 5000)
 
-setInterval(postQueue, 5000)
+// should this be 'onbeforeunload'? would we still have access to DOM then?
+window.onunload(event => {
+  postQueue(queue)
+})
