@@ -1,5 +1,9 @@
 const express = require('express')
 const app = express()
+const bodyParser = require('body-parser')
+
+app.use(bodyParser.json()); // support json encoded bodies
+app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 app.use(express.static('public'))
 
@@ -9,7 +13,7 @@ app.get('/', (req, res) => {
 
 app.post('/recordings', (req, res) => {
   res.send('posted to recordings')
-  console.log(req.body)
+  console.log('recordings router:', req.body)
 })
 
 app.listen(3000, () => {
