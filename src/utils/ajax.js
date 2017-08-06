@@ -1,16 +1,21 @@
 const methods = ['GET', 'HEAD', 'POST', 'PUT', 'DELETE', 'CONNECT', 'OPTIONS', 'PATCH']
 
-export default sendAjaxRequest = (method, url, cb) => {
-  const xmlHttp = new XMLHttpRequest()
+const sendAjaxRequest = (method, url, body, cb) => {
+  console.log('body from xhr', body)
+  const xhr = new XMLHttpRequest()
 
-  xmlHttp.onreadystatechange = () => {
-    if (xmlHttp.readyState === XMLHttpRequest.DONE ) {
-      if (xmlHttp.readyState == 4 && xmlHttp.status == 200){
-        callback(xmlHttp.responseText);
+  xhr.open(method, url, true)
+  xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8')
+  xhr.onreadystatechange = () => {
+    if (xhr.readyState === XMLHttpRequest.DONE) {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        cb(xhr.responseText)
       }
     }
   }
 
-  xmlHttp.open(method, url, true)
-  xmlHttp.send()
+  xhr.send(JSON.stringify({
+    x: body.screenX,
+    y: body.screenY
+  }))
 }

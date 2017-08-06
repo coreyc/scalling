@@ -6,10 +6,10 @@ const sendAjaxRequest = (method, url, body, cb) => {
   const xhr = new XMLHttpRequest()
 
   xhr.open(method, url, true)
-  xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+  xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8')
   xhr.onreadystatechange = () => {
     if (xhr.readyState === XMLHttpRequest.DONE) {
-      if (xhr.readyState == 4 && xhr.status == 200){
+      if (xhr.readyState == 4 && xhr.status == 200) {
         cb(xhr.responseText)
       }
     }
@@ -61,7 +61,6 @@ function Queue() {
 }
 
 const postQueue = queue => {
-  console.log('queue', queue)
   sendAjaxRequest('POST', 'http://localhost:3000/recordings', queue, res => {
     console.log('res:', res)
   })
@@ -72,7 +71,7 @@ const eventListeners = ['keyup', 'click']
 
 eventListeners.map(eventListener => {
   document.addEventListener(eventListener, event => {
-    queue.enqueue(event)
+    queue.enqueue({event: event, timestamp: Date.now()})
     console.log('event', event)
   })
 })

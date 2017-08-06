@@ -5,8 +5,10 @@
 // add retry logic in case it fails, then delete on success
 import { sendAjaxRequest } from '../../utils/ajax'
 
-export default postQueue = queue => {
-  sendAjaxRequest('POST', 'localhost:3000/recordings', () => {
-    console.log('posted')
+const postQueue = queue => {
+  sendAjaxRequest('POST', 'localhost:3000/recordings', queue, res => {
+    console.log('res:', res)
   })
 }
+
+export default postQueue
