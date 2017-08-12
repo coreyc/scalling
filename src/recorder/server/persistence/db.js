@@ -3,7 +3,7 @@ const assert = require('assert')
 
 // client ajax post to server, server stores data in db (or other persistence store)
 
-const insertDocuments = (db, callback) => {
+const insert = (db, callback) => {
   const collection = db.collection('documents')
   
   collection.insertMany([
@@ -27,3 +27,7 @@ MongoClient.connect(url, (err, db) => {
     db.close()
   })
 })
+
+export {
+  insert
+}
