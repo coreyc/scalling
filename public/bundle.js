@@ -57,8 +57,38 @@
 	var _sendQueue = __webpack_require__(2);
 	
 	var _sendQueue2 = _interopRequireDefault(_sendQueue);
-
+	
+	var _queue = __webpack_require__(4);
+	
+	var _queue2 = _interopRequireDefault(_queue);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var queue = new _queue2.default();
+	var eventListeners = ['keyup', 'click'];
+	
+	eventListeners.map(function (eventListener) {
+	  document.addEventListener(eventListener, function (event) {
+	    queue.enqueue({ event: event, timestamp: Date.now() });
+	    console.log('event', event);
+	  });
+	});
+	
+	var htmlElementsArray = document.getElementsByTagName('*');
+	console.log(htmlElementsArray);
+	window.onload = function () {
+	  var body = document.body.innerHTML;
+	  console.log(body);
+	};
+	
+	setInterval(function () {
+	  (0, _sendQueue2.default)(queue.dequeue());
+	}, 5000);
+	
+	// should this be 'onbeforeunload'? would we still have access to DOM then?
+	// window.onbeforeunload(event => {
+	//   postQueue(queue)
+	// })
 
 /***/ }),
 /* 2 */
@@ -72,8 +102,12 @@
 	
 	var _ajax = __webpack_require__(3);
 	
+	var _ajax2 = _interopRequireDefault(_ajax);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
 	var postQueue = function postQueue(queue) {
-	  (0, _ajax.sendAjaxRequest)('POST', 'localhost:3000/recordings', queue, function (res) {
+	  (0, _ajax2.default)('POST', 'http://localhost:3000/recordings', queue, function (res) {
 	    console.log('res:', res);
 	  });
 	}; // POST queue to endpoint, 
@@ -89,6 +123,9 @@
 
 	'use strict';
 	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
 	var methods = ['GET', 'HEAD', 'POST', 'PUT', 'DELETE', 'CONNECT', 'OPTIONS', 'PATCH'];
 	
 	var sendAjaxRequest = function sendAjaxRequest(method, url, body, cb) {
@@ -109,6 +146,57 @@
 	    x: body.screenX,
 	    y: body.screenY
 	  }));
+	};
+	
+	exports.default = sendAjaxRequest;
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = Queue;
+	function Queue() {
+	
+	  var queue = [];
+	  var offset = 0;
+	
+	  this.getLength = function () {
+	    return queue.length - offset;
+	  };
+	
+	  this.isEmpty = function () {
+	    return queue.length == 0;
+	  };
+	
+	  this.enqueue = function (item) {
+	    queue.push(item);
+	  };
+	
+	  this.dequeue = function () {
+	    if (queue.length == 0) return undefined;
+	
+	    var item = queue[offset];
+	
+	    if (++offset * 2 >= queue.length) {
+	      queue = queue.slice(offset);
+	      offset = 0;
+	    }
+	
+	    return item;
+	  };
+	
+	  this.peek = function () {
+	    return queue.length > 0 ? queue[offset] : undefined;
+	  };
+	
+	  this.clear = function () {
+	    if (queue.length !== 0) queue = [];
+	  };
 	};
 
 /***/ })

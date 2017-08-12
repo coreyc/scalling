@@ -2,14 +2,13 @@
   "name": "scalling",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.js",
   "directories": {
     "test": "tests"
   },
   "scripts": {
     "mockRecorderServer": "node ./src/recorder/server/app.js",
     "start": "node_modules/.bin/webpack src/recorder/client/index.js -o public/bundle.js && webpack-dev-server",
-    "test": "mocha --require babel-register ./test/*.spec.js"
+    "test": "mocha --require babel-register ./tests/**/*.spec.js"
   },
   "repository": {
     "type": "git",
@@ -20,7 +19,8 @@
   "dependencies": {
     "body-parser": "^1.17.2",
     "express": "4.15.3",
-    "mongodb": "^2.2.30"
+    "mongodb": "^2.2.30",
+    "ramda": "^0.24.1"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",

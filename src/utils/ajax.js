@@ -19,3 +19,5 @@ const sendAjaxRequest = (method, url, body, cb) => {
     y: body.screenY
   }))
 }
+
+export default sendAjaxRequest
