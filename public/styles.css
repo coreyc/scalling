@@ -1,3 +1,15 @@
 #buttonToClick:active {
     background-color: red;
 }
+
+.pb_cursor {
+  display: block;
+  position: absolute;
+  transition: left 0.5s, top 0.5s;
+  transition-timing-function: ease;
+  left: 20px;
+  top: 20px;
+  height: 20px;
+  width: 20px;
+  background: url(cursor.png);
+}
