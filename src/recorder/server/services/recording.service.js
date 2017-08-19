@@ -1,10 +1,10 @@
-import { insert } from '../persistence/db'
+const connectInsert = require('../persistence/db').connectInsert
 
 const record = data => {
   return new Promise((resolve, reject) => {
-    insert(data)
-      .then
-      .catch
+    connectInsert('myproject', data)
+      .then(result => { resolve(result) })
+      .catch(e => { reject(e) })
   })
 }
 
@@ -18,6 +18,6 @@ const record = data => {
 // DB -- insert(data)
 // Mongo collection.insert(queue)
 
-export {
+module.exports = {
   record
 }

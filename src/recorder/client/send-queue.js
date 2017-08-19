@@ -6,8 +6,8 @@
 import sendAjaxRequest from '../../utils/ajax'
 
 const postQueue = queue => {
-  sendAjaxRequest('POST', 'http://localhost:3000/recordings', queue, res => {
-    console.log('res:', res)
+  sendAjaxRequest('POST', 'http://localhost:3000/recording', queue, res => {
+    console.log('res from postQueue:', res)
   })
 }
 

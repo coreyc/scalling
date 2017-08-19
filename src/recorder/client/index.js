@@ -18,7 +18,11 @@ window.onload = () => {
   console.log(body)
 }
 
-setInterval(() => { postQueue(queue.dequeue()) }, 5000)
+setInterval(() => { 
+  if (queue.getLength() >= 1) {
+    postQueue(queue.dequeue())
+  }
+}, 5000)
 
 // should this be 'onbeforeunload'? would we still have access to DOM then?
 // window.onbeforeunload(event => {

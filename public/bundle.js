@@ -82,7 +82,9 @@
 	};
 	
 	setInterval(function () {
-	  (0, _sendQueue2.default)(queue.dequeue());
+	  if (queue.getLength() >= 1) {
+	    (0, _sendQueue2.default)(queue.dequeue());
+	  }
 	}, 5000);
 	
 	// should this be 'onbeforeunload'? would we still have access to DOM then?
@@ -107,8 +109,8 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var postQueue = function postQueue(queue) {
-	  (0, _ajax2.default)('POST', 'http://localhost:3000/recordings', queue, function (res) {
-	    console.log('res:', res);
+	  (0, _ajax2.default)('POST', 'http://localhost:3000/recording', queue, function (res) {
+	    console.log('res from postQueue:', res);
 	  });
 	}; // POST queue to endpoint, 
 	// create new queue at same time as POST
