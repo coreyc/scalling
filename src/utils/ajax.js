@@ -14,10 +14,15 @@ const sendAjaxRequest = (method, url, body, cb) => {
     }
   }
 
-  xhr.send(JSON.stringify({
-    x: body.screenX,
-    y: body.screenY
-  }))
+  const sentItem = JSON.stringify({
+    x: body.event.screenX,
+    y: body.event.screenY,
+    time: body.timestamp
+  })
+
+  console.log('sentItem:', sentItem)
+
+  xhr.send(sentItem)
 }
 
 export default sendAjaxRequest

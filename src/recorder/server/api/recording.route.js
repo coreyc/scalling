@@ -3,7 +3,7 @@ const express = require('express')
 const app = express()
 
 module.exports = app.post('/recording', (req, res) => {
-  record()
+  record(req.body)
     .then(result => {
       res.send('posted to recording service')    
       console.log('recording router:', req.body)
