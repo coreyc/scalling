@@ -1,8 +1,6 @@
 const MongoClient = require('mongodb').MongoClient
 const url = 'mongodb://localhost:27017/myproject'
 
-// client ajax post to server, server stores data in db (or other persistence store)
-
 const insert = (db, data) => {
   const collection = db.collection('documents')
 
@@ -17,9 +15,6 @@ const insert = (db, data) => {
       //db.close()
       return e
     })
-  // , (err, result) => {
-  //   callback(result)
-  // })
 }
 
 const connectInsert = (db, data) => {
@@ -27,11 +22,6 @@ const connectInsert = (db, data) => {
     insert(db, data)
   })
 }
-
-// , (err, db) => {
-//   insertDocuments(db, () => {
-//     db.close()
-//   })
 
 module.exports = {
   insert,

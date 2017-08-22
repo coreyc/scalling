@@ -18,7 +18,7 @@ window.onload = () => {
   console.log(body)
 }
 
-setInterval(() => { 
+setInterval(() => {
   if (queue.getLength() >= 1) {
     postQueue(queue.dequeue())
   }
