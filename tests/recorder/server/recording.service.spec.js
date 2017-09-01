@@ -1,4 +1,4 @@
-import expect from 'expect.js'
+import { expect } from 'chai'
 import { record } from '../../../src/recorder/server/services/recording.service'
 
 xdescribe('RECORDER SERVICE', () => {

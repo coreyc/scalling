@@ -1,4 +1,4 @@
-import expect from 'expect.js'
+import { expect } from 'chai'
 import Queue from '../../src/utils/queue'
 
 describe('QUEUE', () => {

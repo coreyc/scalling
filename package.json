@@ -31,6 +31,7 @@
     "chai": "^4.1.2",
     "expect.js": "latest",
     "mocha": "latest",
+    "sinon": "^3.2.1",
     "webpack": "^1.14.0",
     "webpack-dev-server": "^1.16.2"
   }

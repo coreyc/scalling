@@ -1,4 +1,4 @@
-import expect from 'expect.js'
+import { expect } from 'chai'
 import sendAjaxRequest from '../../src/utils/ajax'
 
 describe('AJAX', () => {
