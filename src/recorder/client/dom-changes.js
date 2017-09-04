@@ -1,6 +1,7 @@
-const observeDomChanges = () => {
+const observeDomChanges = queue => {
   const observer = new MutationObserver(mutations => {
     mutations.forEach(mutation => {
+      queue.enqueue(mutation.type)
       console.log(mutation.type)
     })
   })
@@ -9,7 +10,9 @@ const observeDomChanges = () => {
   const observerConfig = {
     attributes: true,
     childList: true,
-    characterData: true
+    characterData: true,
+    characterDataOldValue: true,
+    subtree: true
   }
   
   // Node, config

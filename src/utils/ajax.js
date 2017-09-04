@@ -14,15 +14,26 @@ const sendAjaxRequest = (method, url, body, cb) => {
     }
   }
 
-  const sentItem = JSON.stringify({
-    x: body.event.screenX,
-    y: body.event.screenY,
-    time: body.timestamp
-  })
+  if (body.event.type === 'click') {
+    const data = clickType(body)
+    const sentItem = JSON.stringify({
+      data: data,
+      time: body.timestamp
+    })
+    console.log('sentItem:', sentItem)
+    
+    xhr.send(sentItem)
+  }
+}
 
-  console.log('sentItem:', sentItem)
-
-  xhr.send(sentItem)
+const clickType = data => {
+  return {
+    screenX: data.event.screenX,
+    screenY: data.event.screenY,
+    srcElement: data.event.srcElement,
+    target: data.event.target,
+    toElement: data.event.toElement
+  }
 }
 
 export default sendAjaxRequest

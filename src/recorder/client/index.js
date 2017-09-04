@@ -1,5 +1,6 @@
 import postQueue from './send-queue'
 import Queue from '../../utils/queue'
+import observeDomChanges from './dom-changes'
 
 const eventQueue = new Queue()
 const htmlQueue = new Queue()
@@ -10,8 +11,14 @@ const eventListeners = ['keydown', 'keyup', 'click', 'mouseover',
 eventListeners.map(eventListener => {
   document.addEventListener(eventListener, event => {
     eventQueue.enqueue({event: event, timestamp: Date.now()})
-    console.log('event', event)
+    console.log('event:', event)
   })
+})
+
+observeDomChanges(htmlQueue)
+
+document.getElementById('buttonToClick').addEventListener('click', () => {
+  document.body.appendChild(document.createTextNode( '' ))
 })
 
 const htmlElementsArray = document.getElementsByTagName('*')
@@ -25,8 +32,9 @@ window.onload = () => {
 }
 
 setInterval(() => {
-  if (eventQueue.getLength() >= 1) {
+  if (eventQueue.getLength() >= 1 && eventQueue.getLength() >= 1) {
     postQueue(eventQueue.dequeue())
+    postQueue(htmlQueue.dequeue())
   }
 }, 5000)
 
