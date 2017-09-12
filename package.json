@@ -1,12 +1,13 @@
 {
   "name": "scalling",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
   "directories": {
     "test": "tests"
   },
   "scripts": {
-    "mockRecorderServer": "node ./src/recorder/server/app.js",
+    "mockRecordingServer": "node ./src/recorder/server/app.js",
+    "mockPlaybackServer": "nodemon ./src/playback/server/app.js",
     "start": "node_modules/.bin/webpack src/recorder/client/index.js -o public/bundle.js && webpack-dev-server",
     "test": "mocha --require babel-register './tests/**/*.spec.js'"
   },
@@ -31,6 +32,7 @@
     "chai": "^4.1.2",
     "expect.js": "latest",
     "mocha": "latest",
+    "nodemon": "^1.12.0",
     "sinon": "^3.2.1",
     "sinon-chai": "^2.13.0",
     "webpack": "^1.14.0",

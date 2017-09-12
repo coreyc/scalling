@@ -1,0 +1,12 @@
+{
+	"_id": ObjectId("59b716cdccacf347d8d48294"),
+	"bubbles": true,
+	"cancelBubble": false,
+	"cancelable": true,
+	"defaultPrevented": false,
+	"srcElement": "buttonToClick",
+	"target": "buttonToClick",
+	"timeStamp": 1798.4350000000002,
+	"type": "click",
+	"isTrusted": true
+}
