@@ -15,24 +15,23 @@ const sendAjaxRequest = (method, url, body, cb) => {
   }
 
   if (body.event.type === 'click') {
-    const data = clickType(body)
-    const sentItem = JSON.stringify({
-      data: data,
-      time: body.timestamp
-    })
+    const sentItem = JSON.stringify(baseEvent(body))
     console.log('sentItem:', sentItem)
-    
     xhr.send(sentItem)
   }
 }
 
-const clickType = data => {
+const baseEvent = data => {
   return {
-    screenX: data.event.screenX,
-    screenY: data.event.screenY,
-    srcElement: data.event.srcElement,
-    target: data.event.target,
-    toElement: data.event.toElement
+    bubbles: data.event.bubbles,
+    cancelBubble: data.event.cancelBubble,
+    cancelable: data.event.cancelable,
+    defaultPrevented: data.event.defaultPrevented,
+    srcElement: data.event.srcElement.id,
+    target: data.event.target.id,
+    timeStamp: data.event.timeStamp,
+    type: data.event.type,
+    isTrusted: data.event.isTrusted
   }
 }
 
