@@ -7,12 +7,12 @@ const insert = (db, data) => {
   return collection.insert(data)
     .then(result => {
       console.log('result from insert fn:', result)
-      //db.close()
+      db.close()
       return result
     })
     .catch(e => {
       console.log('error from insert fn:', e)
-      //db.close()
+      db.close()
       return e
     })
 }
