@@ -23,6 +23,7 @@ const sendAjaxRequest = (method, url, body, cb) => {
 
 const baseEvent = data => {
   return {
+    sessionId: data.event.sessionId,
     bubbles: data.event.bubbles,
     cancelBubble: data.event.cancelBubble,
     cancelable: data.event.cancelable,

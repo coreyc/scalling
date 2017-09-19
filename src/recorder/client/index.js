@@ -1,6 +1,6 @@
-import uuid from 'js-uuid'
 import postQueue from './send-queue'
 import Queue from '../../utils/queue'
+import uuid from '../../utils/uuid'
 import observeDomChanges from './dom-changes'
 
 let sessionId = ''
@@ -13,6 +13,7 @@ const eventListeners = ['keydown', 'keyup', 'click', 'mouseover',
 
 eventListeners.map(eventListener => {
   document.addEventListener(eventListener, event => {
+    event.sessionId = sessionId
     eventQueue.enqueue({event: event, timestamp: Date.now()})
     console.log('event:', event)
   })
@@ -31,8 +32,9 @@ console.log(htmlElementsArray)
 window.onload = () => {
   const body = document.body.innerHTML
   console.log(body)
+  sessionId = uuid()
+  console.log('sessionId', sessionId)
   postQueue(htmlQueue.enqueue(body))
-  sessionId = uuid.v4()
 }
 
 setInterval(() => {
