@@ -2,7 +2,7 @@ const connectRetrieve = require('../persistence/db').connectRetrieve
 
 const retrieve = () => {
   return new Promise((resolve, reject) => {
-    connectRetrieve('myproject')
+    connectRetrieve('myproject', { sessionId: { $eq: '1fab40a7-dd94-4a2b-9bc7-aac80ac028fd' } })
       .then(result => { resolve(result) })
       .catch(e => { reject(e) })
   })

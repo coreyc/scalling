@@ -1,6 +1,9 @@
+import uuid from 'js-uuid'
 import postQueue from './send-queue'
 import Queue from '../../utils/queue'
 import observeDomChanges from './dom-changes'
+
+let sessionId = ''
 
 const eventQueue = new Queue()
 const htmlQueue = new Queue()
@@ -29,6 +32,7 @@ window.onload = () => {
   const body = document.body.innerHTML
   console.log(body)
   postQueue(htmlQueue.enqueue(body))
+  sessionId = uuid.v4()
 }
 
 setInterval(() => {

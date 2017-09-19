@@ -20,8 +20,10 @@
   "dependencies": {
     "body-parser": "^1.17.2",
     "express": "4.15.3",
+    "js-uuid": "0.0.6",
     "mongodb": "^2.2.30",
-    "ramda": "^0.24.1"
+    "ramda": "^0.24.1",
+    "uuid": "^3.1.0"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",
