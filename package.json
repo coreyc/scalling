@@ -8,8 +8,9 @@
   "scripts": {
     "mockRecordingServer": "nodemon ./src/recorder/server/app.js",
     "mockPlaybackServer": "nodemon ./src/playback/server/app.js",
-    "start": "node_modules/.bin/webpack src/recorder/client/index.js -o public/bundle.js && webpack-dev-server",
-    "test": "mocha --require babel-register './tests/**/*.spec.js'"
+    "start": "webpack-dev-server --open",
+    "test": "mocha --require babel-register './tests/**/*.spec.js'",
+    "watch": "webpack --progress --watch"
   },
   "repository": {
     "type": "git",
