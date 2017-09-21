@@ -19,7 +19,7 @@ const retrieve = (db, query) => {
 
 const connectRetrieve = (db, query) => {
   return MongoClient.connect(url).then(db => {
-    retrieve(db, query)
+    return retrieve(db, query)
   })
 }
 

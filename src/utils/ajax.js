@@ -14,10 +14,15 @@ const sendAjaxRequest = (method, url, body, cb) => {
     }
   }
 
-  if (body.event.type === 'click') {
-    const sentItem = JSON.stringify(baseEvent(body))
-    console.log('sentItem:', sentItem)
-    xhr.send(sentItem)
+  if (body.hasOwnProperty('event')) {
+    if (body.event.type === 'click') {
+      const sentItem = JSON.stringify(baseEvent(body))
+      console.log('sentItem:', sentItem)
+      xhr.send(sentItem)
+    }
+  }
+  if (body.type === 'initialHtml') {
+    xhr.send(JSON.stringify(body))
   }
 }
 

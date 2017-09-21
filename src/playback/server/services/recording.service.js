@@ -1,22 +1,18 @@
 const connectRetrieve = require('../persistence/db').connectRetrieve
+const constructSessionTiming = require('../handle-time').constructSessionTiming
 
-const retrieve = () => {
+const retrieve = sessionId => {
   return new Promise((resolve, reject) => {
-    connectRetrieve('myproject', { sessionId: { $eq: '1fab40a7-dd94-4a2b-9bc7-aac80ac028fd' } })
-      .then(result => { resolve(result) })
+    connectRetrieve('myproject', { sessionId: { $eq: sessionId } })
+      .then(dbRecords => {
+        // console.log('dbRecords:', dbRecords)
+        const eventPlayback = constructSessionTiming(dbRecords)
+        console.log('eventPlayback:', eventPlayback)
+        resolve(eventPlayback)
+      })
       .catch(e => { reject(e) })
   })
 }
-
-// API -- POST /recordings 
-// queue
-// returns 200
-
-// SERVICE -- record(data)
-// post data to db fn
-
-// DB -- insert(data)
-// Mongo collection.insert(queue)
 
 module.exports = {
   retrieve

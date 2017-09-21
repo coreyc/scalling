@@ -34,13 +34,12 @@ window.onload = () => {
   console.log(body)
   sessionId = uuid()
   console.log('sessionId', sessionId)
-  postQueue(htmlQueue.enqueue(body))
+  postQueue({body: body, sessionId: sessionId, type: 'initialHtml'})
 }
 
 setInterval(() => {
   if (eventQueue.getLength() >= 1 && eventQueue.getLength() >= 1) {
     postQueue(eventQueue.dequeue())
-    postQueue(htmlQueue.dequeue())
   }
 }, 5000)
 
