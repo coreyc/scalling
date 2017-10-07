@@ -1,0 +1,1 @@
+setTimeout(() => { console.log(true) }, 2000)

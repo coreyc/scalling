@@ -22,7 +22,7 @@ eventListeners.map(eventListener => {
 observeDomChanges(htmlQueue)
 
 document.getElementById('buttonToClick').addEventListener('click', () => {
-  document.body.appendChild(document.createTextNode( '' ))
+  document.body.appendChild(document.createTextNode(''))
 })
 
 const htmlElementsArray = document.getElementsByTagName('*')

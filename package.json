@@ -10,7 +10,8 @@
     "mockPlaybackServer": "nodemon ./src/playback/server/app.js",
     "start": "webpack-dev-server --open",
     "test": "mocha --require babel-register './tests/**/*.spec.js'",
-    "watch": "webpack --progress --watch"
+    "watch": "webpack --progress --watch",
+    "mongo": "sudo mongod --dbpath=/data --port 27017"
   },
   "repository": {
     "type": "git",

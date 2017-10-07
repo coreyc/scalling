@@ -6,7 +6,7 @@ const recordingRouter = require('./api/recording.route')
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
-app.use(express.static('public'))
+app.use(express.static('src/playback/public'))
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
