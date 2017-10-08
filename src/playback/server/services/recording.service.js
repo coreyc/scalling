@@ -6,8 +6,8 @@ const retrieve = sessionId => {
   return new Promise((resolve, reject) => {
     connectRetrieve('myproject', { sessionId: { $eq: sessionId } })
       .then(dbRecords => {
+        console.log('dbRecords:', dbRecords)
         const pb = constructEntireSession(dbRecords)
-        //fs.writeFileSync('public/test.js', 'setTimeout(() => { console.log(true) }, 2000)', 'utf8')
         resolve(pb)
       })
       .catch(e => { reject(e) })
