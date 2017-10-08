@@ -3,7 +3,8 @@ const constructSessionTiming = (session = []) => {
     return (event.type !== 'initialHtml')
       ? {target: event.target,
         type: event.type,
-        timeStamp: event.timeStamp}
+        timeStamp: event.timeStamp,
+        bubbles: event.bubbles}
       : null
   }).filter(fn => fn !== null)
   return sessionEvents

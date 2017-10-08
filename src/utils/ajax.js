@@ -33,8 +33,8 @@ const baseEvent = data => {
     cancelBubble: data.event.cancelBubble,
     cancelable: data.event.cancelable,
     defaultPrevented: data.event.defaultPrevented,
-    srcElement: data.event.srcElement.id,
-    target: data.event.target.id,
+    srcElement: data.event.srcElement.localName,
+    target: data.event.target.localName,
     timeStamp: data.event.timeStamp,
     type: data.event.type,
     isTrusted: data.event.isTrusted
