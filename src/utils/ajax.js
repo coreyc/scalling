@@ -32,6 +32,7 @@ const baseEvent = data => {
     bubbles: data.event.bubbles,
     cancelBubble: data.event.cancelBubble,
     cancelable: data.event.cancelable,
+    constructor: data.event.constructor.toString().split(' ')[1],
     defaultPrevented: data.event.defaultPrevented,
     srcElement: data.event.srcElement.localName,
     target: data.event.target.localName,

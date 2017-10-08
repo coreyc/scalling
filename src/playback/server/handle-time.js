@@ -4,7 +4,8 @@ const constructSessionTiming = (session = []) => {
       ? {target: event.target,
         type: event.type,
         timeStamp: event.timeStamp,
-        bubbles: event.bubbles}
+        bubbles: event.bubbles,
+        constructor: event.constructor}
       : null
   }).filter(fn => fn !== null)
   return sessionEvents
