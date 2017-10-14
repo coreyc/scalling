@@ -17,13 +17,3 @@ const retrieve = sessionId => {
 module.exports = {
   retrieve
 }
-
-/*
-
-1. Fetch initialHTML from mongo
-2. res.sendFile(initialHTML)
-3. construct event playback
-4. put in js file
-5. link to js file from initialHTML file
-
-*/
