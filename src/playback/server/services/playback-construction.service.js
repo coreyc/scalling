@@ -1,32 +1,44 @@
 const path = require('path')
 const fs = require('fs')
 const constructSessionTiming = require('../handle-time').constructSessionTiming
-const eventFactory = require('../event-factory').eventFactory
 
 const constructEntireSession = records => {
   const eventPlayback = constructSessionTiming(records)
-  const stringified = eventPlayback.map(obj => {
-    return JSON.stringify(obj)
-  })
+  const stringified = eventPlayback.map(obj => JSON.stringify(obj))
+
   fs.writeFileSync(path.join('src/playback/public' + '/playbackRunner.js'),
-    `const eventFactory = (eventType = '', type, options = {}) => {
-      switch(eventType) {
-        case 'MouseEvent': return new MouseEvent(type, options)
+    `const eventFactory = (itm, constructor) => {
+      switch(constructor) {
+        case 'MouseEvent':
+          if(itm.type === 'mousemove') {
+            document.getElementById('pb_cursor').style.left = itm.pageX
+            document.getElementById('pb_cursor').style.top = itm.pageY
+          }
+          return new MouseEvent(itm.type, {bubbles: itm.bubbles})
+        break
+        case 'KeyboardEvent': return new KeyboardEvent(itm.type, {bubbles: itm.bubbles, code: itm.code})
         break
       }
     }
     const arr = [${stringified}].forEach((itm, idx) => {
       setTimeout((itm => {
-        const constructor = [${stringified}][idx].constructor.split('()')[0]
-        console.log(constructor)
-        const eventFromFactory = eventFactory(constructor)
-        document.querySelector(itm.target).dispatchEvent(eventFactory(constructor, itm.type, {bubbles: itm.bubbles}))
+        const constructor = [${stringified}][idx].constructor
+        document.querySelector(itm.target).dispatchEvent(eventFactory(itm, constructor))
         console.log(itm.target, itm.type, itm.timeStamp)
       }).bind(this, itm, idx), itm.timeStamp)
-    })`, 'utf8')
+    })
+    
+    const moveMouse = () => {
+      
+    }
+    `, 'utf8')
+
   fs.writeFileSync(path.join('src/playback/public' + '/playbackRunner.html'),
-    '<head><script src="../playbackRunner.js"></script></head>' + records[0].body,
+    '<head><script src="../playbackRunner.js"></script><link rel="stylesheet" href="../playbackRunner.css"></head>'
+      + '<div id="pb_cursor" class="pb_cursor"></div>'
+      + records[0].body,
     'utf8')
+
   return stringified
 }
 

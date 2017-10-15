@@ -5,7 +5,10 @@ const constructSessionTiming = (session = []) => {
         type: event.type,
         timeStamp: event.timeStamp,
         bubbles: event.bubbles,
-        constructor: event.constructor}
+        constructor: event.constructor,
+        pageX: event.pageX,
+        pageY: event.pageY
+      }
       : null
   }).filter(fn => fn !== null)
   return sessionEvents
